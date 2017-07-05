@@ -19,6 +19,17 @@ public class Sale implements Serializable {
    */
   private double productValue;
 
+  /**
+   * Constructor.
+   * 
+   * @param productType the product type for the sale.
+   * @param productValue the product value for the sale.
+   */
+  public Sale(String productType, double productValue) {
+    this.productType = productType;
+    this.productValue = productValue;
+  }
+
   public String getProductType() {
     return productType;
   }
