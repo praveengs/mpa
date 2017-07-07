@@ -4,6 +4,7 @@ import com.jp.solution.data.DataPersistenceInterface;
 import com.jp.solution.data.InMemoryDataPersistenceImpl;
 import com.jp.solution.model.Sale;
 import com.jp.solution.model.message.MessageType1;
+import com.jp.solution.model.message.MessageType2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
@@ -12,6 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * Test class for message processing.
+ * 
  * @author praveen.nair, created on 05/07/2017.
  */
 public class MessageProcessorTest {
@@ -41,12 +44,23 @@ public class MessageProcessorTest {
   @Test
   public void testRecordAMessageType1Sale() throws Exception {
     Sale sale = new Sale("Apple", 10);
+    LOGGER.debug(sale);
     MessageType1 message = new MessageType1(sale);
+    messageProcessor.processMessage(message);
+    Assert.assertEquals(1, InMemoryDataPersistenceImpl.getInstance().getData(sale.getProductType()).getNumSales());
+    Assert.assertEquals(10, InMemoryDataPersistenceImpl.getInstance().getData(sale.getProductType()).getTotalValue(), 0);
+  }
+
+  /*@Test
+  public void testRecordAMessageType2Sale() throws Exception {
+    Sale sale = new Sale("Apple", 10);
+    LOGGER.debug(sale);
+    MessageType2 message = new MessageType2(sale, 2);
     Sale expectedSale = new Sale("Apple", 10);
-    MessageType1 expectedMessage = new MessageType1(expectedSale);
+    MessageType2 expectedMessage = new MessageType2(expectedSale, 2);
     messageProcessor.processMessage(message);
     Assert.assertEquals(1, InMemoryDataPersistenceImpl.getInstance().getSize());
     Assert.assertTrue(InMemoryDataPersistenceImpl.getInstance().getAllData().get(0).equals(expectedMessage));
-  }
+  }*/
 
 }

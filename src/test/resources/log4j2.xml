@@ -1,34 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-    <Properties>
-        <Property name="aafdsgxi-messages-in">logs/aafdsgxi-messages-in.log</Property>
-        <Property name="aafdsgxi-messages-out">logs/aafdsgxi-messages-out.log</Property>
-        <Property name="aafdsgxi-simulator">logs/aafdsgxi-simulator.log</Property>
-    </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="appender-messages-in" fileName="${aafdsgxi-messages-in}" append="true">
-            <PatternLayout pattern="%msg%n" />
-        </File>
-        <File name="appender-messages-out" fileName="${aafdsgxi-messages-out}" append="true">
-            <PatternLayout pattern="%msg%n" />
-        </File>
-        <File name="appender-simulator" fileName="${aafdsgxi-simulator}" append="true">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-        </File>
     </Appenders>
     <Loggers>
         <Root level="trace">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="appender-simulator"/>
         </Root>
-        <Logger name="com.ueas.message.in.log" additivity="FALSE" level="ALL">
-            <AppenderRef ref="appender-messages-in" level="ALL" />
-        </Logger>
-        <Logger name="com.ueas.message.out.log" additivity="FALSE" level="ALL">
-            <AppenderRef ref="appender-messages-out" level="ALL" />
-        </Logger>
     </Loggers>
 </Configuration>

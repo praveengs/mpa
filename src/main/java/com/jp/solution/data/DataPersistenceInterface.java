@@ -1,33 +1,35 @@
 package com.jp.solution.data;
 
-import java.util.List;
+import com.jp.solution.model.report.SaleRecord;
+
+import java.util.Collection;
 
 /**
  * Interface that can be used for implementing the data persistence.
  * 
  * @author praveen.nair, created on 05/07/2017.
  */
-public interface DataPersistenceInterface<T> {
+public interface DataPersistenceInterface {
   /**
    * Put the data into the data store.
    * 
-   * @param t the data to persist
+   * @param saleType the key to persist data for.
    */
-  void putData(T t);
+  void putData(String saleType, SaleRecord saleRecord);
+
+  /**
+   * Get all the data from the data store.
+   *
+   * @return data for saleType.
+   */
+  SaleRecord getData(String saleType);
 
   /**
    * Get all the data from the data store.
    *
    * @return list of data.
    */
-  List<T> getAllData();
-
-  /**
-   * Get the size of the data stored so far.
-   * 
-   * @return size of the data.
-   */
-  int getSize();
+  Collection<SaleRecord> getAllData();
 
   /**
    * Clear the data from the data store.

@@ -1,17 +1,18 @@
 package com.jp.solution.data;
 
+import com.jp.solution.model.report.SaleRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This class will be used as a data cache for all sale types.
  *
  * @author praveen.nair, created on 04/07/2017.
  */
-public class InMemoryDataPersistenceImpl<AbstractMessageType> implements DataPersistenceInterface<AbstractMessageType> {
+public class InMemoryDataPersistenceImpl implements DataPersistenceInterface {
   /**
    * The Constant LOGGER.
    */
@@ -20,12 +21,12 @@ public class InMemoryDataPersistenceImpl<AbstractMessageType> implements DataPer
   /**
    * using concurrent hash map to avoid possible threading problems, just pre-empting.
    */
-  private List<AbstractMessageType> messageList;
+  private ConcurrentHashMap<String, SaleRecord> saleRecordMap;
 
   private static InMemoryDataPersistenceImpl instance = new InMemoryDataPersistenceImpl();
 
   public InMemoryDataPersistenceImpl() {
-    this.messageList = new ArrayList<>(10);
+    this.saleRecordMap = new ConcurrentHashMap<>(10);
   }
 
   /**
@@ -38,30 +39,31 @@ public class InMemoryDataPersistenceImpl<AbstractMessageType> implements DataPer
   }
 
   @Override
-  public void putData(AbstractMessageType message) {
-    getMessageList().add(message);
+  public void putData(String saleType, SaleRecord saleRecord) {
+    getSaleRecordMap().put(saleType, saleRecord);
   }
 
   @Override
-  public List<AbstractMessageType> getAllData() {
-    return getMessageList();
+  public SaleRecord getData(String saleType) {
+    return getSaleRecordMap().get(saleType);
   }
 
   @Override
-  public int getSize() {
-    return getMessageList().size();
+  public Collection<SaleRecord> getAllData() {
+    return getSaleRecordMap().values();
   }
+
 
   @Override
   public void clearData() {
-    getMessageList().clear();
+    getSaleRecordMap().clear();
   }
 
-  public List<AbstractMessageType> getMessageList() {
-    return messageList;
+  public ConcurrentHashMap<String, SaleRecord> getSaleRecordMap() {
+    return saleRecordMap;
   }
 
-  public void setMessageList(List<AbstractMessageType> messageList) {
-    this.messageList = messageList;
+  public void setSaleRecordMap(ConcurrentHashMap<String, SaleRecord> saleRecordMap) {
+    this.saleRecordMap = saleRecordMap;
   }
 }
