@@ -4,12 +4,53 @@ import java.util.LinkedList;
 
 /**
  * Record the sale and adjust values accordingly
+ *
  * @author praveen.nair, created on 07/07/2017.
  */
 public class SaleRecord {
+
+  /**
+   * The type of product for this sale record.
+   */
+  private String saleType;
+
+  /**
+   * The total value for this record
+   */
   private double totalValue;
+
+  /**
+   * number of sales for this type
+   */
   private int numSales;
+
+  /**
+   * The number of messages received for this product type.
+   */
+  private int numberOfMessages;
+
+  /**
+   * The list of adjustments done for this sale type.
+   */
   private LinkedList<AdjustmentRecord> adjustments;
+
+  /**
+   * Sale record constructor.
+   *
+   * @param saleType sale type
+   * @param totalValue the total value.
+   * @param numSales num of sales recorded.
+   * @param numberOfMessages number of messages received
+   * @param adjustments the adjustment list.
+   */
+  public SaleRecord(String saleType, double totalValue, int numSales, int numberOfMessages,
+      LinkedList<AdjustmentRecord> adjustments) {
+    this.saleType = saleType;
+    this.totalValue = totalValue;
+    this.numSales = numSales;
+    this.numberOfMessages = numberOfMessages;
+    this.adjustments = adjustments;
+  }
 
   public double getTotalValue() {
     return totalValue;
@@ -35,12 +76,31 @@ public class SaleRecord {
     this.adjustments = adjustments;
   }
 
-  @Override public String toString() {
-    final StringBuilder sb = new StringBuilder("SaleRecord{");
-    sb.append("totalValue=").append(totalValue);
-    sb.append(", numSales=").append(numSales);
-    sb.append(", adjustments=").append(adjustments);
-    sb.append('}');
-    return sb.toString();
+  public int getNumberOfMessages() {
+    return numberOfMessages;
   }
+
+  public void setNumberOfMessages(int numberOfMessages) {
+    this.numberOfMessages = numberOfMessages;
+  }
+
+  public String getSaleType() {
+    return saleType;
+  }
+
+  public void setSaleType(String saleType) {
+    this.saleType = saleType;
+  }
+
+  @Override
+  public String toString() {
+    return "SaleRecord{" +
+        "saleType='" + saleType + '\'' +
+        ", totalValue=" + totalValue +
+        ", numSales=" + numSales +
+        ", numberOfMessages=" + numberOfMessages +
+        ", adjustments=" + adjustments +
+        '}';
+  }
+
 }

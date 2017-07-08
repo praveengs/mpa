@@ -13,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author praveen.nair, created on 04/07/2017.
  */
 public class InMemoryDataPersistenceImpl implements DataPersistenceInterface {
+
   /**
    * The Constant LOGGER.
    */
@@ -25,13 +26,16 @@ public class InMemoryDataPersistenceImpl implements DataPersistenceInterface {
 
   private static InMemoryDataPersistenceImpl instance = new InMemoryDataPersistenceImpl();
 
-  public InMemoryDataPersistenceImpl() {
+  /**
+   * To avoid accidental instantiation.
+   */
+  private InMemoryDataPersistenceImpl() {
     this.saleRecordMap = new ConcurrentHashMap<>(10);
   }
 
   /**
    * Return the singleton instance of the class.
-   * 
+   *
    * @return instance
    */
   public static InMemoryDataPersistenceImpl getInstance() {
@@ -57,6 +61,11 @@ public class InMemoryDataPersistenceImpl implements DataPersistenceInterface {
   @Override
   public void clearData() {
     getSaleRecordMap().clear();
+  }
+
+  @Override
+  public int getNumberOfMessagesReceived() {
+    return getSaleRecordMap().values().stream().mapToInt(SaleRecord::getNumberOfMessages).sum();
   }
 
   public ConcurrentHashMap<String, SaleRecord> getSaleRecordMap() {

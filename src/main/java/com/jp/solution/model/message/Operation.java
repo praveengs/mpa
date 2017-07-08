@@ -11,5 +11,5 @@ package com.jp.solution.model.message;
  * @author praveen.nair, created on 04/07/2017.
  */
 public enum Operation {
-  ADD, SUBSTRACT, MULTIPLY
+  ADD, SUBTRACT, MULTIPLY
 }

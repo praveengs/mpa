@@ -13,7 +13,7 @@ import com.jp.solution.model.Sale;
 public class MessageType1 extends AbstractMessageType {
 
   public MessageType1(Sale sale) {
-    super(AppConstants.MESSGE_TYPE_1);
+    super(AppConstants.MESSAGE_TYPE_1);
     setSale(sale);
   }
 

@@ -18,7 +18,7 @@ public class MessageType3 extends AbstractMessageType {
   private Operation operation;
 
   public MessageType3(Sale sale, Operation operation) {
-    super(AppConstants.MESSGE_TYPE_3);
+    super(AppConstants.MESSAGE_TYPE_3);
     setSale(sale);
     setOperation(operation);
   }

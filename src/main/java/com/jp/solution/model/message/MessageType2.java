@@ -16,7 +16,7 @@ public class MessageType2 extends AbstractMessageType {
   private int numOccurances;
 
   public MessageType2(Sale sale, int numOccurances) {
-    super(AppConstants.MESSGE_TYPE_2);
+    super(AppConstants.MESSAGE_TYPE_2);
     setSale(sale);
     setNumOccurances(numOccurances);
   }
