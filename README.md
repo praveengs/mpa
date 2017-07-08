@@ -14,7 +14,10 @@
  
  ReportGenerator
   - This class exposes static methods, that prints out the required reports. 
-  
+
+## Unit tests
+Most of the unit tests are based on the above 3 classes. And the name of the unit tests are modelled to reflect their actual intention.
+
 ## Build tool used
  - Gradle.
  - Running gradlew build downloads the dependencies, compiles the class and runs the unit test.
