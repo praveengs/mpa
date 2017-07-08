@@ -14,10 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class InMemoryDataPersistenceImpl implements DataPersistenceInterface {
 
-  /**
-   * The Constant LOGGER.
-   */
-  private static final Logger LOGGER = LogManager.getLogger(InMemoryDataPersistenceImpl.class);
 
   /**
    * using concurrent hash map to avoid possible threading problems, just pre-empting.

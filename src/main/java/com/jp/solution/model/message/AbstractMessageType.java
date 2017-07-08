@@ -1,10 +1,3 @@
-/**********************************************************************.
- *                                                                     *
- *         Copyright (c) Ultra Electronics Airport Systems 2017     *
- *                         All rights reserved                         *
- *                                                                     *
- ***********************************************************************/
-
 package com.jp.solution.model.message;
 
 import com.jp.solution.model.Sale;
@@ -12,14 +5,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
+ * The parent message class, that is inherited by the different message types.
+ *
  * @author praveen.nair, created on 05/07/2017.
  */
 public abstract class AbstractMessageType {
+
   /**
    * instance of the sale.
    */
   private Sale sale;
 
+  /**
+   * The type of message, that can be set by the implementing class.
+   */
   private String messageType;
 
   public AbstractMessageType(String messageType) {
@@ -44,16 +43,20 @@ public abstract class AbstractMessageType {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o)
+    if (this == o) {
       return true;
-    if (o == null || getClass() != o.getClass())
+    }
+    if (o == null || getClass() != o.getClass()) {
       return false;
+    }
 
     AbstractMessageType that = (AbstractMessageType) o;
 
-    if (getSale() != null ? !getSale().equals(that.getSale()) : that.getSale() != null)
+    if (getSale() != null ? !getSale().equals(that.getSale()) : that.getSale() != null) {
       return false;
-    return getMessageType() != null ? getMessageType().equals(that.getMessageType()) : that.getMessageType() == null;
+    }
+    return getMessageType() != null ? getMessageType().equals(that.getMessageType())
+        : that.getMessageType() == null;
   }
 
   @Override

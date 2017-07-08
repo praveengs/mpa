@@ -47,7 +47,15 @@ public class MessageProcessor {
   }
 
   /**
-   * This method processes the incoming message, and manipulates the data if required.
+   * This method is the starting point for all message processing.
+   *
+   * Based on the message type, this method stores the data after computation if required, into the
+   * data store.
+   *
+   * If the number of total messages received so far is a multiple of 10 then it prints a sales
+   * report. If the number of total messages received so far is 50 then it prints a final adjustment
+   * report. At that point it also stops any further message processing as well, and ignores the
+   * further incoming messages.
    *
    * @param message the incoming message.
    */
@@ -115,16 +123,19 @@ public class MessageProcessor {
       SaleRecord saleRecord) {
     switch (message.getOperation()) {
       case ADD:
+        // set total value = current total value + (number of sales * sale amount)
         saleRecord.setTotalValue(
             saleRecord.getTotalValue() + (saleRecord.getNumSales() * message.getSale()
                 .getProductValue()));
         break;
       case MULTIPLY:
+        // total value = current total value * sale amount
         saleRecord.setTotalValue(
             saleRecord.getTotalValue() * message.getSale()
                 .getProductValue());
         break;
       case SUBTRACT:
+        // total value = current total value - (number of sales * sale amount)
         saleRecord.setTotalValue(
             saleRecord.getTotalValue() - (saleRecord.getNumSales() * message.getSale()
                 .getProductValue()));

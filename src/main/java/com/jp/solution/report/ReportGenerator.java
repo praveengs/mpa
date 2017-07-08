@@ -2,18 +2,13 @@ package com.jp.solution.report;
 
 import com.jp.solution.model.report.SaleRecord;
 import java.util.Collection;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
+ * This class exposes static methods that can be used to print reports.
+ *
  * Created by prave_000 on 08/07/2017.
  */
 public class ReportGenerator {
-
-  /**
-   * The Constant LOGGER.
-   */
-  private static final Logger LOGGER = LogManager.getLogger(ReportGenerator.class);
 
   /**
    * To avoid accidental instantiation.
@@ -36,6 +31,12 @@ public class ReportGenerator {
     });
   }
 
+  /**
+   * Method to generate the final report. This only includes the adjustments made to the sales
+   * for each sale type.
+   *
+   * @param saleRecords the sale records.
+   */
   public static void generateFinalReport(Collection<SaleRecord> saleRecords) {
     String format = "%-10s%-10s%n";
 
